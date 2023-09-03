@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from 'react'
+import MyNav from './Components/Navbarra/MyNav'
+import { myLinks, myLinksFoot } from './data/navlinks'
+import MyFooter from './Components/Footbarra/MyFooter'
+import Welcome from './Components/Benvenuto/Welcome'
+import LatestRelease from './Components/Main/LatestRelease'
+export class App extends Component {
+  render() {
+    return (
+      <>
+      <MyNav links={myLinks}/>
+      <Welcome/>
+      <LatestRelease/>
+      <MyFooter links={myLinksFoot}/>
+      </>
+    )
+  }
 }
 
-export default App;
+export default App
+
