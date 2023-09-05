@@ -8,7 +8,7 @@ class MyCard extends Component {
     const { book } = this.props;
 
     return (
-      <div key={nanoid()} className="col-md-4 mb-4">
+      <div key={nanoid()} className="col-md-3 mb-4">
             
       <Card border="warning" className="h-100">
         <Card.Img variant="top" src={book.img} />
