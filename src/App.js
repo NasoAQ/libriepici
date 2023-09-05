@@ -8,10 +8,10 @@ export class App extends Component {
   render() {
     return (
       <>
-      <MyNav links={myLinks}/>
-      <Welcome/>
-      <LatestRelease/>
-      <MyFooter links={myLinksFoot}/>
+        <MyNav links={myLinks}/>
+        <Welcome/>
+        <LatestRelease/>
+        <MyFooter links={myLinksFoot}/>
       </>
     )
   }

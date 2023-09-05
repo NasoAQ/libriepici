@@ -12,7 +12,18 @@ export class LatestRelease extends Component {
       searchText: "",
     }
   }
+
+  handleSearchChange = (e) => {
+    this.setState({
+      searchText: e.target.value
+    });
+
+  }
+
   render() {
+    const filteredBooks = Pippo.filter((book) =>
+      book.title.toLowerCase().includes(this.state.searchText.toLowerCase()));
+
     return (
       <Container>
         <input
@@ -22,21 +33,17 @@ export class LatestRelease extends Component {
           onChange={this.handleSearchChange}
           className='form-control my-3'
         />
-        <Row>
-          {Pippo.filter((book) => 
-          book.title.toLowerCase().includes(this.state.searchText.toLowerCase())).map((book) => (
-          <MyCard key={nanoid()} book={book} />
-          ))}
-        </Row>        
+        {filteredBooks.length === 0 ? (
+          <p className='text-danger'>'No matching books found.</p>
+        ) : (
+          <Row>  
+            {filteredBooks.map((book) => (
+              <MyCard key={nanoid()} book={book} />
+            ))}
+          </Row>
+        )}        
       </Container>
     );
-  }
-
-  handleSearchChange = (e) => {
-    this.setState((prevState) => ({
-      searchText: e.target.value
-    }));
-
   }
 }
 

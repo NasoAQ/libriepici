@@ -22,7 +22,7 @@ class MyCard extends Component {
         <Card.Img
           variant="top"
           src={book.img}
-          className={ `${this.state.selected ? 'selected': "" }` }
+          className={ `${this.state.selected ? 'selected': "" } myImg` }
           onClick={this.toggleSelected}
         />
         <Card.Body>
