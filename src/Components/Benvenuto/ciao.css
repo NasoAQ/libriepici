@@ -1,17 +1,16 @@
 .bg-image {
-    background-image: url('https://th.bing.com/th/id/OIP.ur86oHnmLwSR6Bw_WMO6gAHaE7?pid=ImgDet&rs=1');
-    background-size: cover;
-    background-position: center center; 
-    background-repeat: no-repeat;
-    color: black; 
-    height: 150px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
+  background-image: url("https://th.bing.com/th/id/OIP.ur86oHnmLwSR6Bw_WMO6gAHaE7?pid=ImgDet&rs=1");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: black;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 
-  /* .myDiv {
+/* .myDiv {
     background-color: rgba(243, 199, 116, 0.603);
   } */
-  

@@ -1,7 +1,7 @@
 .selected {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 .myImg:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
