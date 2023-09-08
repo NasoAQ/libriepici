@@ -1,47 +1,55 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
+import SingleComment from "./SingleComment";
 
-export class CommentArea extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      reviews: [],
-    };
-  }
+const CommentArea = ({ asin }) => {
+  const [reviews, setReviews] = useState([]);
+  const [randomReview, setRandomReview] = useState(null);
 
-  async getComment() {
-    const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/comments/",
-      {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY5ODYyNTJkMDVjNTAwMTRkOTU1YTkiLCJpYXQiOjE2OTQwNzQ0MDUsImV4cCI6MTY5NTI4NDAwNX0.O_9ZbZOzkhCGd7xzsqUUd3qYkuW-BOjkD-g9buXAgTw",
-        },
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch(
+          `https://striveschool-api.herokuapp.com/api/comments/`,
+          {
+            headers: {
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY5ODYyNTJkMDVjNTAwMTRkOTU1YTkiLCJpYXQiOjE2OTQwNzQ0MDUsImV4cCI6MTY5NTI4NDAwNX0.O_9ZbZOzkhCGd7xzsqUUd3qYkuW-BOjkD-g9buXAgTw",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Errore nella richiesta");
+        }
+
+        let data = await response.json();
+
+        data = data.filter(item => item.elementId === asin);
+
+        const randomIndex = Math.floor(Math.random() * data.lenght);
+        const randomSelectedReview = data[randomIndex];
+
+        setReviews(data);
+        setRandomReview(randomSelectedReview);
+      } catch (error) {
+        console.log(error, "Errore nelle props");
       }
-    );
-    if (!response.ok) {
-      throw new Error("Errore nella richiesta");
-    }
-    const data = await response.json();
-    this.setState({ reviews: data });
-  }
-  catch(error) {
-    console.log(error, "Errore nell'inserimento props");
-  }
-  componentDidMount() {
-    this.getComment();
-  }
+    };
 
-  render() {
-    return (
-      <>
-        <div>Reviews</div>
-        <CommentList comments={this.state.reviews} />
-        <AddComment />
-      </>
-    );
-  }
-}
+    fetchReviews();
+  }, []);
+
+  return (
+    <>
+      <div>Random</div>
+      {randomReview && <SingleComment comment={randomReview} />}
+      <div>Reviews</div>
+      <CommentList comments={reviews} />
+      <AddComment />
+    </>
+  );
+};
 
 export default CommentArea;

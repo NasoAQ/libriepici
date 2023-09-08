@@ -1,18 +1,14 @@
-import React, { Component } from "react";
-import MyCard from "../Main/myCard";
+import React from "react";
+import SingleComment from "./SingleComment";
 
-export class CommentList extends Component {
-  render() {
-    const { comments } = this.props;
-
-    return (
-      <div>
-        {/* {comments.map(comment => (
-          <MyCard key={comment._id} book={comment.book} />
-        ))} */}
-      </div>
-    );
-  }
-}
+const CommentList = ({ comments }) => {
+  return (
+    <div>
+      {comments.map(comment => (
+        <SingleComment key={comment._id} comment={comment} />
+      ))}
+    </div>
+  );
+};
 
 export default CommentList;
