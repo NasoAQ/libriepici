@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddComment = ({ onAddComment }) => {
+const AddComment = ({ onAddComment, selectedBookId }) => {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(1);
 
@@ -12,11 +12,29 @@ const AddComment = ({ onAddComment }) => {
     setRating(parseInt(e.target.value, 10));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const newComment = {
-      text: text,
-      rating: rating,
+      comment: text,
+      rate: rating,
+      elementId: selectedBookId,
     };
+
+    const response = await fetch(
+      "https://striveschool-api.herokuapp.com/api/comments/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY5ODYyNTJkMDVjNTAwMTRkOTU1YTkiLCJpYXQiOjE2OTQwNzQ0MDUsImV4cCI6MTY5NTI4NDAwNX0.O_9ZbZOzkhCGd7xzsqUUd3qYkuW-BOjkD-g9buXAgTw",
+        },
+        body: JSON.stringify(newComment),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Errore nell'invio recensione");
+    }
 
     onAddComment(newComment);
 
@@ -26,7 +44,7 @@ const AddComment = ({ onAddComment }) => {
 
   return (
     <div>
-      <h3>Add a Comment</h3>
+      <h6>Add a Comment</h6>
       <form>
         <div className="mb-3">
           <label htmlFor="text" className="form-label">

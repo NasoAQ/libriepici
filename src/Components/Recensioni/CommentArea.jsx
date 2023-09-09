@@ -6,6 +6,7 @@ import SingleComment from "./SingleComment";
 const CommentArea = ({ asin }) => {
   const [reviews, setReviews] = useState([]);
   const [randomReview, setRandomReview] = useState(null);
+  const [selectedBookId, setSelectedBookId] = useState(null);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -26,12 +27,12 @@ const CommentArea = ({ asin }) => {
 
         let data = await response.json();
 
-        data = data.filter(item => item.elementId === asin);
+        /*         data = data.filter(item => item.elementId === asin);
+         */ setReviews(data);
 
-        const randomIndex = Math.floor(Math.random() * data.lenght);
+        const randomIndex = Math.floor(Math.random() * data.length);
         const randomSelectedReview = data[randomIndex];
 
-        setReviews(data);
         setRandomReview(randomSelectedReview);
       } catch (error) {
         console.log(error, "Errore nelle props");
@@ -39,15 +40,24 @@ const CommentArea = ({ asin }) => {
     };
 
     fetchReviews();
-  }, []);
+    setSelectedBookId(asin);
+  }, [asin]);
+
+  const filteredReviews = reviews.filter(item => item.elementId === asin);
 
   return (
     <>
-      <div>Random</div>
-      {randomReview && <SingleComment comment={randomReview} />}
-      <div>Reviews</div>
-      <CommentList comments={reviews} />
-      <AddComment />
+      {filteredReviews.length === 0 && randomReview && (
+        <>
+          <h5 className="text-danger">Random reviews</h5>
+          <SingleComment comment={randomReview} />
+        </>
+      )}
+      {filteredReviews.length > 0 && (
+        <h5 className="text-success">Real reviews</h5>
+      )}
+      <CommentList comments={filteredReviews} />
+      <AddComment selectedBookId={selectedBookId} />
     </>
   );
 };

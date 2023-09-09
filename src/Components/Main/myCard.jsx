@@ -20,7 +20,7 @@ const MyCard = ({ book /* comments */ }) => {
   ); */
 
   return (
-    <div key={nanoid()} className="col-md-3 my-4">
+    <div key={nanoid()} className="col-6 col-md-3 my-4">
       <Card border="warning" className="h-100">
         <Card.Img
           variant="top"
@@ -28,9 +28,12 @@ const MyCard = ({ book /* comments */ }) => {
           className={`${selected ? "selected" : ""} myImg`}
           onClick={handleImageClick}
         />
-        <Card.Body>
+        <Card.Body className="bg-success-subtle">
           <Card.Title>{book.title}</Card.Title>
-          <Card.Text>Price: € {book.price}</Card.Text>
+          <Card.Text>
+            <strong>Price:</strong>
+            <span className="text-warning"> € {book.price}</span>
+          </Card.Text>
           {selected && (
             /*  bookComments.lenght > 0 && */ <CommentArea asin={book.asin} />
           )}
