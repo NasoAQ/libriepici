@@ -32,7 +32,7 @@ const MyCard = ({ book /* comments */ }) => {
           <Card.Title>{book.title}</Card.Title>
           <Card.Text>
             <strong>Price:</strong>
-            <span className="text-warning"> € {book.price}</span>
+            <span className="text-primary"> € {book.price}</span>
           </Card.Text>
           {selected && (
             /*  bookComments.lenght > 0 && */ <CommentArea asin={book.asin} />

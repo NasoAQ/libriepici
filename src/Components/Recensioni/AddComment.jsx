@@ -36,7 +36,7 @@ const AddComment = ({ onAddComment, selectedBookId }) => {
       throw new Error("Errore nell'invio recensione");
     }
 
-    onAddComment(newComment);
+    // onAddComment(newComment);
 
     setText("");
     setRating(1);
