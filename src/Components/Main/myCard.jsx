@@ -29,7 +29,7 @@ const MyCard = ({ book /* comments */ }) => {
           onClick={handleImageClick}
         />
         <Card.Body className="bg-success-subtle">
-          <Card.Title>{book.title}</Card.Title>
+          <Card.Subtitle>{book.title}</Card.Subtitle>
           <Card.Text>
             <strong>Price:</strong>
             <span className="text-primary"> € {book.price}</span>

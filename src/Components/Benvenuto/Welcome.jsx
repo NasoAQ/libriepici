@@ -5,9 +5,9 @@ import "./ciao.css";
 const Welcome = () => {
   return (
     <Container className="my-5 bg-image">
-      <div className="myDiv">
-        <h2>Welcome to the NasoBookStore</h2>
-        <h5>Explore the latest book release and find your next read</h5>
+      <div className="myDiv text-center">
+        <h2>NasoBookStore</h2>
+        <h5>Explore the latest book release</h5>
       </div>
     </Container>
   );

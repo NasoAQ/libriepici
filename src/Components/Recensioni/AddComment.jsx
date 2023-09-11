@@ -4,6 +4,7 @@ const AddComment = ({ onAddComment, selectedBookId }) => {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(1);
   const [author, setAuthor] = useState("");
+  const [comments, setComments] = useState([]);
 
   const handleTextChange = e => {
     setText(e.target.value);
@@ -43,6 +44,7 @@ const AddComment = ({ onAddComment, selectedBookId }) => {
     }
 
     // onAddComment(newComment);
+    setComments([...comments, newComment]);
 
     setAuthor("");
     setText("");

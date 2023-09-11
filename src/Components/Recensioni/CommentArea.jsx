@@ -8,7 +8,6 @@ const CommentArea = ({ asin }) => {
   const [randomReview, setRandomReview] = useState(null);
   const [selectedBookId, setSelectedBookId] = useState(null);
   const [comments, setComments] = useState([]);
-  const [selectedComment, setSelectedComment] = useState(null);
 
   const handleDeleteComment = async commentId => {
     try {
