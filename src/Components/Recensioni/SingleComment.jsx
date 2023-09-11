@@ -1,6 +1,6 @@
 import React from "react";
 
-const SingleComment = ({ comment }) => {
+const SingleComment = ({ comment, onDeleteComment }) => {
   return (
     <div>
       <p>
@@ -12,6 +12,12 @@ const SingleComment = ({ comment }) => {
       <p>
         <strong>Rate:</strong> {comment.rate}
       </p>
+      <button
+        onClick={() => onDeleteComment(comment._id)}
+        className="btn btn-danger"
+      >
+        Cancella
+      </button>
       <hr />
     </div>
   );

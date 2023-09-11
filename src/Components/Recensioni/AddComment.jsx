@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const AddComment = ({ onAddComment, selectedBookId }) => {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(1);
+  const [author, setAuthor] = useState("");
 
   const handleTextChange = e => {
     setText(e.target.value);
@@ -12,10 +13,15 @@ const AddComment = ({ onAddComment, selectedBookId }) => {
     setRating(parseInt(e.target.value, 10));
   };
 
+  const handleAuthorChange = e => {
+    setAuthor(e.target.value);
+  };
+
   const handleSubmit = async () => {
     const newComment = {
       comment: text,
       rate: rating,
+      author: author,
       elementId: selectedBookId,
     };
 
@@ -38,6 +44,7 @@ const AddComment = ({ onAddComment, selectedBookId }) => {
 
     // onAddComment(newComment);
 
+    setAuthor("");
     setText("");
     setRating(1);
   };
@@ -46,6 +53,18 @@ const AddComment = ({ onAddComment, selectedBookId }) => {
     <div>
       <h6>Add a Comment</h6>
       <form>
+        <div className="mb-3">
+          <label htmlFor="author" className="form-label">
+            Author
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="author"
+            value={author}
+            onChange={handleAuthorChange}
+          />
+        </div>
         <div className="mb-3">
           <label htmlFor="text" className="form-label">
             Comment Text
