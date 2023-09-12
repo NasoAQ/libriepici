@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddComment = ({ onAddComment, selectedBookId }) => {
+const AddComment = ({ onAddComment, selectedBookId, setReviews, reviews }) => {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(1);
   const [author, setAuthor] = useState("");
@@ -45,6 +45,8 @@ const AddComment = ({ onAddComment, selectedBookId }) => {
 
     // onAddComment(newComment);
     setComments([...comments, newComment]);
+
+    setReviews([...reviews, newComment]);
 
     setAuthor("");
     setText("");

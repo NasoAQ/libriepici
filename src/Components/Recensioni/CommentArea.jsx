@@ -8,6 +8,16 @@ const CommentArea = ({ asin }) => {
   const [randomReview, setRandomReview] = useState(null);
   const [selectedBookId, setSelectedBookId] = useState(null);
   const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState(null);
+
+  const handleAddComment = async newComment => {
+    try {
+      setComments([...comments, newComment]);
+      setNewComment(newComment);
+    } catch (error) {
+      console.log(error, "Errore nell'inserimento");
+    }
+  };
 
   const handleDeleteComment = async commentId => {
     try {
@@ -88,7 +98,12 @@ const CommentArea = ({ asin }) => {
         comments={filteredReviews}
         onDeleteComment={handleDeleteComment}
       />
-      <AddComment selectedBookId={selectedBookId} />
+      <AddComment
+        selectedBookId={selectedBookId}
+        onAddComment={handleAddComment}
+        setReviews={setReviews}
+        reviews={reviews}
+      />
     </>
   );
 };
