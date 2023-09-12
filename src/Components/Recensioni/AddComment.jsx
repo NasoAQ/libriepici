@@ -94,13 +94,15 @@ const AddComment = ({ onAddComment, selectedBookId, setReviews, reviews }) => {
             onChange={handleRatingChange}
           />
         </div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
+        <div className="d-flex justify-content-center">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

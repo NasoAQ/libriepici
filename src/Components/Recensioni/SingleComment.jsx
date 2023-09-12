@@ -17,6 +17,9 @@ const SingleComment = ({ comment, onDeleteComment }) => {
     setModalOpen(false);
   };
 
+  const updatedDate = new Date(comment.updatedAt);
+  const updatedDateStr = updatedDate.toLocaleString();
+
   return (
     <div>
       <p>
@@ -28,9 +31,15 @@ const SingleComment = ({ comment, onDeleteComment }) => {
       <p>
         <strong>Rate:</strong> {comment.rate}
       </p>
-      <button onClick={handleDeleteClick} className="btn btn-danger">
-        Cancella
-      </button>
+      <p>
+        <span>Updated at:</span> {updatedDateStr}
+      </p>
+      <div className="d-flex justify-content-evenly">
+        <button onClick={handleDeleteClick} className="btn btn-danger btn-sm">
+          Cancella
+        </button>
+        <button className="btn btn-success btn-sm">Modifica</button>
+      </div>
       <hr />
 
       <Modal show={modalOpen} onHide={handleCancelDelete}>

@@ -17,15 +17,17 @@ const LatestRelease = () => {
 
   return (
     <Container>
-      <Col className="col-6 d-flex justify-content-center">
-        <input
-          type="text"
-          placeholder="Search by title..."
-          value={searchText}
-          onChange={handleSearchChange}
-          className="form-control my-3"
-        />
-      </Col>
+      <Row className=" d-flex justify-content-center align-items-center">
+        <Col className="col-6">
+          <input
+            type="text"
+            placeholder="Search by title..."
+            value={searchText}
+            onChange={handleSearchChange}
+            className="form-control my-3 text-center"
+          />
+        </Col>
+      </Row>
       {filteredBooks.length === 0 ? (
         <p className="text-danger">'No matching books found.</p>
       ) : (
