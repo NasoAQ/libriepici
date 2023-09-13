@@ -4,13 +4,13 @@ import { Modal, Button } from "react-bootstrap";
 const SingleComment = ({ comment, onDeleteComment, onEditComment }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
+  const [editedComment, setEditedComment] = useState({ ...comment });
 
   const handleDeleteClick = () => {
     setModalOpen(true);
   };
 
   const handleEditClick = () => {
-    //onEditComment(comment);
     setModalOpen2(true);
   };
 
@@ -19,7 +19,7 @@ const SingleComment = ({ comment, onDeleteComment, onEditComment }) => {
   };
 
   const handleConfirmEdit = () => {
-    onEditComment(comment);
+    onEditComment(editedComment);
     setModalOpen2(false);
   };
 
@@ -77,7 +77,62 @@ const SingleComment = ({ comment, onDeleteComment, onEditComment }) => {
         <Modal.Header closeButton>
           <Modal.Title>Conferma modifica</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Sei sicuro di voler modificare questo commento?</Modal.Body>
+        <Modal.Body>
+          <form>
+            <div className="mb-3">
+              <label htmlFor="editedAuthor" className="form-label">
+                Author:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="editedAuthor"
+                value={editedComment.author}
+                onChange={e =>
+                  setEditedComment({
+                    ...editedComment,
+                    author: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="editedText" className="form-label">
+                Comment:
+              </label>
+              <textarea
+                className="form-control"
+                id="editedText"
+                value={editedComment.comment}
+                onChange={e =>
+                  setEditedComment({
+                    ...editedComment,
+                    comment: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="editedRating" className="form-label">
+                Rate:
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                id="editedRating"
+                value={editedComment.rate}
+                min="1"
+                max="5"
+                onChange={e =>
+                  setEditedComment({
+                    ...editedComment,
+                    rate: parseInt(e.target.value),
+                  })
+                }
+              />
+            </div>
+          </form>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCancelEdit}>
             Annulla

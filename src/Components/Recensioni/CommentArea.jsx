@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 import SingleComment from "./SingleComment";
+import IsLoading from "../Spinner/isLoading";
 
 const CommentArea = ({ asin }) => {
   const [reviews, setReviews] = useState([]);
@@ -9,8 +10,10 @@ const CommentArea = ({ asin }) => {
   const [selectedBookId, setSelectedBookId] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchReviews = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         `https://striveschool-api.herokuapp.com/api/comments/`,
@@ -37,6 +40,8 @@ const CommentArea = ({ asin }) => {
       setRandomReview(randomSelectedReview);
     } catch (error) {
       console.log(error, "Errore nelle props");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -103,12 +108,14 @@ const CommentArea = ({ asin }) => {
   useEffect(() => {
     fetchReviews();
     setSelectedBookId(asin);
+    //setIsLoading(false);
   }, [asin]);
 
   const filteredReviews = reviews.filter(item => item.elementId === asin);
 
   return (
     <>
+      <IsLoading isLoading={isLoading} />
       {filteredReviews.length === 0 && randomReview && (
         <>
           <h5 className="text-danger">Random reviews</h5>
