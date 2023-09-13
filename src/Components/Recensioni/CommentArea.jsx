@@ -49,6 +49,32 @@ const CommentArea = ({ asin }) => {
     }
   };
 
+  const handleEditComment = async editedComment => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/comments/${editedComment._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY5ODYyNTJkMDVjNTAwMTRkOTU1YTkiLCJpYXQiOjE2OTQwNzQ0MDUsImV4cCI6MTY5NTI4NDAwNX0.O_9ZbZOzkhCGd7xzsqUUd3qYkuW-BOjkD-g9buXAgTw",
+          },
+          body: JSON.stringify(editedComment),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Errore nell'invio del commento modificato");
+      }
+
+      const updatedReviews = reviews.map(review =>
+        review._id === editedComment._id ? editedComment : review
+      );
+      setReviews(updatedReviews);
+      fetchReviews();
+    } catch (error) {}
+  };
+
   const handleDeleteComment = async commentId => {
     try {
       const response = await fetch(
@@ -89,6 +115,7 @@ const CommentArea = ({ asin }) => {
           <SingleComment
             comment={randomReview}
             onDeleteComment={handleDeleteComment}
+            onEditComment={handleEditComment}
           />
         </>
       )}
@@ -98,6 +125,7 @@ const CommentArea = ({ asin }) => {
       <CommentList
         comments={filteredReviews}
         onDeleteComment={handleDeleteComment}
+        onEditComment={handleEditComment}
       />
       <AddComment
         selectedBookId={selectedBookId}

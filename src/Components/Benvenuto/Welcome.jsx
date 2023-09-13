@@ -7,7 +7,7 @@ const Welcome = () => {
     <Container className="my-5 bg-image">
       <div className="myDiv text-center">
         <h2>NasoBookStore</h2>
-        <h5>Explore the latest book release</h5>
+        <h5>Explore the latest romance book</h5>
       </div>
     </Container>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import SingleComment from "./SingleComment";
 
-const CommentList = ({ comments, onDeleteComment }) => {
+const CommentList = ({ comments, onDeleteComment, onEditComment }) => {
   return (
     <div>
       {comments.map(comment => (
@@ -9,6 +9,7 @@ const CommentList = ({ comments, onDeleteComment }) => {
           key={comment._id}
           comment={comment}
           onDeleteComment={onDeleteComment}
+          onEditComment={onEditComment}
         />
       ))}
     </div>
