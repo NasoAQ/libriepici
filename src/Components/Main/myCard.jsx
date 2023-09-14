@@ -11,14 +11,6 @@ const MyCard = ({ book /* comments */ }) => {
     setSelected(prevState => !prevState);
   };
 
-  /* const handleImageClick = () => {
-    toggleSelected();
-  }; */
-
-  /* const bookComments = comments.filter(
-    comment => comment.elementId === book.asin
-  ); */
-
   return (
     <div key={nanoid()} className="col-6 col-md-4 col-lg-3 my-4">
       <Card border="warning" className="h-100">

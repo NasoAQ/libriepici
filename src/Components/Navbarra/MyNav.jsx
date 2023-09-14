@@ -1,16 +1,44 @@
 /* eslint-disable no-useless-constructor */
-import React from "react";
+import React, { useContext } from "react";
 
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { Navbar, Nav, Col, Button } from "react-bootstrap";
 import { nanoid } from "nanoid";
+import ThemeContext from "../Contexts/ThemeContext";
 
-const MyNav = ({ links }) => {
+const MyNav = ({ links, onSearchChange }) => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  const handleSearchChange = e => {
+    const searchText = e.target.value;
+    onSearchChange(searchText);
+  };
+
+  const navbarClasses = `navbar navbar-expand-lg ${
+    theme === "dark" ? "bg-dark" : "bg-warning"
+  }`;
+  const buttonClasses = `btn-sm ${
+    theme === "dark" ? "btn-warning" : "btn-dark"
+  }`;
+
+  const dataBsTheme = theme === "dark" ? "dark" : "warning";
+
   return (
-    <Navbar expand="lg" bg="warning" data-bs-theme="warning">
+    <Navbar expand="lg" className={navbarClasses} data-bs-theme={dataBsTheme}>
       <Container>
         <Navbar.Brand href="#home">LibriEpici</Navbar.Brand>
+        <Col className="col-6">
+          <input
+            type="text"
+            placeholder="Search by title..."
+            //value={searchText}
+            onChange={handleSearchChange}
+            className="form-control my-3 text-center"
+          />
+        </Col>
+        <Button onClick={toggleTheme} className={`mx-2 ${buttonClasses}`}>
+          Theme
+        </Button>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
