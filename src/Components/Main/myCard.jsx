@@ -5,7 +5,7 @@ import "../Main/border.css";
 import CommentArea from "../Recensioni/CommentArea";
 import ThemeContext from "../Contexts/ThemeContext";
 
-const MyCard = ({ book /* comments */ }) => {
+const MyCard = ({ book, onImgClick /* comments */ }) => {
   const [selected, setSelected] = useState(false);
   const { theme } = useContext(ThemeContext);
 
@@ -17,6 +17,11 @@ const MyCard = ({ book /* comments */ }) => {
   const cardBgClasses =
     theme === "dark" ? "bg-body-tertiary" : "bg-success-subtle";
 
+  const handleClickImg = () => {
+    toggleSelected();
+    onImgClick(book.asin);
+  };
+
   return (
     <div key={nanoid()} className="col-6 col-md-4 col-lg-3 my-4">
       <Card className={`h-100 ${borderClasses}`}>
@@ -24,7 +29,7 @@ const MyCard = ({ book /* comments */ }) => {
           variant="top"
           src={book.img}
           className={`${selected ? "selected" : ""} myImg`}
-          onClick={toggleSelected}
+          onClick={handleClickImg}
         />
         <Card.Body className={cardBgClasses}>
           <Card.Subtitle>{book.title}</Card.Subtitle>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import MyCard from "./myCard";
 import Pippo from "../../data/booksCategory/romance.json";
@@ -13,6 +13,11 @@ const LatestRelease = ({ searchText }) => {
   const { theme } = useContext(ThemeContext);
   const containerClasses = `${theme === "dark" ? "bg-dark" : ""}`;
 
+  const [selectedBook, setSelectedBook] = useState(null);
+
+  const handleClickImg = bookId => {
+    setSelectedBook(bookId);
+  };
   return (
     <Container className={containerClasses}>
       {filteredBooks.length === 0 ? (
@@ -20,7 +25,12 @@ const LatestRelease = ({ searchText }) => {
       ) : (
         <Row>
           {filteredBooks.map(book => (
-            <MyCard key={nanoid()} book={book} />
+            <MyCard
+              key={nanoid()}
+              book={book}
+              isSelected={book.asin === selectedBook}
+              onImgClick={handleClickImg}
+            />
           ))}
         </Row>
       )}
