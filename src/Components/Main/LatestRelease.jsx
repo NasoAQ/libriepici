@@ -12,6 +12,7 @@ const LatestRelease = ({ searchText }) => {
 
   const { theme } = useContext(ThemeContext);
   const containerClasses = `${theme === "dark" ? "bg-dark" : ""}`;
+
   return (
     <Container className={containerClasses}>
       {filteredBooks.length === 0 ? (
