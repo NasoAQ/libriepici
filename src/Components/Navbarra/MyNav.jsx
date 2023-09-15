@@ -4,14 +4,16 @@ import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import { Navbar, Nav, Col, Button } from "react-bootstrap";
 import { nanoid } from "nanoid";
-import ThemeContext from "../Contexts/ThemeContext";
+import { ThemeProvider } from "../Contexts/ThemeContext";
+import { PostProvider } from "../Contexts/provaContext";
 
-const MyNav = ({ links, onSearchChange }) => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+const MyNav = ({ links }) => {
+  const { theme, toggleTheme } = useContext(ThemeProvider);
+  const { searchText, setSearchText } = useContext(PostProvider);
 
   const handleSearchChange = e => {
     const searchText = e.target.value;
-    onSearchChange(searchText);
+    setSearchText(searchText);
   };
 
   const navbarClasses = `navbar navbar-expand-lg ${

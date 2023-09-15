@@ -1,16 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import MyCard from "./myCard";
-import Pippo from "../../data/booksCategory/romance.json";
 import { nanoid } from "nanoid";
-import ThemeContext from "../Contexts/ThemeContext";
+import { ThemeProvider } from "../Contexts/ThemeContext";
+import { PostProvider } from "../Contexts/provaContext";
 
-const LatestRelease = ({ searchText }) => {
-  const filteredBooks = Pippo.filter(book =>
-    book.title.toLowerCase().includes(searchText.toLowerCase())
-  );
-
-  const { theme } = useContext(ThemeContext);
+const LatestRelease = () => {
+  const { libriFiltrati } = useContext(PostProvider);
+  const { theme } = useContext(ThemeProvider);
   const containerClasses = `${theme === "dark" ? "bg-dark" : ""}`;
 
   const [selectedBook, setSelectedBook] = useState(null);
@@ -20,11 +17,11 @@ const LatestRelease = ({ searchText }) => {
   };
   return (
     <Container className={containerClasses}>
-      {filteredBooks.length === 0 ? (
+      {libriFiltrati.length === 0 ? (
         <p className="text-danger">'No matching books found.</p>
       ) : (
         <Row>
-          {filteredBooks.map(book => (
+          {libriFiltrati.map(book => (
             <MyCard
               key={nanoid()}
               book={book}

@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import "./ciao.css";
-import ThemeContext from "../Contexts/ThemeContext";
+import { ThemeProvider } from "../Contexts/ThemeContext";
 
 const Welcome = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeProvider);
 
   const bgClasses = theme === "dark" ? "bg-image-dark" : "bg-image";
 

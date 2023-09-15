@@ -3,14 +3,14 @@ import Card from "react-bootstrap/Card";
 import { nanoid } from "nanoid";
 import "../Main/border.css";
 import CommentArea from "../Recensioni/CommentArea";
-import ThemeContext from "../Contexts/ThemeContext";
+import { ThemeProvider } from "../Contexts/ThemeContext";
 
 const MyCard = ({ book, onImgClick /* comments */ }) => {
   const [selected, setSelected] = useState(false);
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeProvider);
 
   const toggleSelected = () => {
-    setSelected(prevState => !prevState);
+    setSelected(!selected);
   };
 
   const borderClasses = theme === "dark" ? "border-success" : "border-warning";
