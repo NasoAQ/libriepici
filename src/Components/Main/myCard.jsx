@@ -5,21 +5,20 @@ import "../Main/border.css";
 import CommentArea from "../Recensioni/CommentArea";
 import { ThemeProvider } from "../Contexts/ThemeContext";
 
-const MyCard = ({ book, onImgClick /* comments */ }) => {
-  const [selected, setSelected] = useState(false);
+const MyCard = ({ book, onImgClick, isSelected }) => {
   const { theme } = useContext(ThemeProvider);
 
-  const toggleSelected = () => {
-    setSelected(!selected);
-  };
-
+  const bordoRosso = isSelected && "selected";
   const borderClasses = theme === "dark" ? "border-success" : "border-warning";
   const cardBgClasses =
     theme === "dark" ? "bg-body-tertiary" : "bg-success-subtle";
 
   const handleClickImg = () => {
-    toggleSelected();
-    onImgClick(book.asin);
+    if (isSelected) {
+      onImgClick(null);
+    } else {
+      onImgClick(book.asin);
+    }
   };
 
   return (
@@ -28,7 +27,7 @@ const MyCard = ({ book, onImgClick /* comments */ }) => {
         <Card.Img
           variant="top"
           src={book.img}
-          className={`${selected ? "selected" : ""} myImg`}
+          className={`${bordoRosso} myImg`}
           onClick={handleClickImg}
         />
         <Card.Body className={cardBgClasses}>
@@ -37,9 +36,7 @@ const MyCard = ({ book, onImgClick /* comments */ }) => {
             <strong>Price:</strong>
             <span className="text-primary"> € {book.price}</span>
           </Card.Text>
-          {selected && (
-            /*  bookComments.lenght > 0 && */ <CommentArea asin={book.asin} />
-          )}
+          {isSelected && <CommentArea asin={book.asin} />}
         </Card.Body>
       </Card>
     </div>

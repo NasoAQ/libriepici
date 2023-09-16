@@ -8,9 +8,10 @@ import { PostProvider } from "../Contexts/provaContext";
 const LatestRelease = () => {
   const { libriFiltrati } = useContext(PostProvider);
   const { theme } = useContext(ThemeProvider);
-  const containerClasses = `${theme === "dark" ? "bg-dark" : ""}`;
 
   const [selectedBook, setSelectedBook] = useState(null);
+
+  const containerClasses = `${theme === "dark" ? "bg-dark" : ""}`;
 
   const handleClickImg = bookId => {
     setSelectedBook(bookId);
