@@ -28,6 +28,7 @@ const LatestRelease = () => {
               book={book}
               isSelected={book.asin === selectedBook}
               onImgClick={handleClickImg}
+              asin={book.asin}
             />
           ))}
         </Row>

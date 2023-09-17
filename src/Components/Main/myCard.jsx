@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
-import Card from "react-bootstrap/Card";
 import { nanoid } from "nanoid";
 import "../Main/border.css";
 import CommentArea from "../Recensioni/CommentArea";
 import { ThemeProvider } from "../Contexts/ThemeContext";
+import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const MyCard = ({ book, onImgClick, isSelected }) => {
   const { theme } = useContext(ThemeProvider);
@@ -35,6 +36,9 @@ const MyCard = ({ book, onImgClick, isSelected }) => {
           <Card.Text>
             <strong>Price:</strong>
             <span className="text-primary"> € {book.price}</span>
+            <Button className="btn-warning btn-sm mx-2">
+              <Link to={`/book/${book.asin}`}>Details</Link>
+            </Button>
           </Card.Text>
           {isSelected && <CommentArea asin={book.asin} />}
         </Card.Body>

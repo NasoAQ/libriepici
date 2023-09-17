@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Errorpage from "./Pages/Errorpage";
+import BookDetails from "./Pages/BookDetails";
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
 
+        <Route path="/book/:bookId" element={<BookDetails />} />
         <Route path="*" element={<Errorpage />} />
       </Routes>
     </BrowserRouter>
