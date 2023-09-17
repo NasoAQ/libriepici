@@ -1,22 +1,17 @@
 import React from "react";
-import MyNav from "./Components/Navbarra/MyNav";
-import { myLinks, myLinksFoot } from "./data/navlinks";
-import MyFooter from "./Components/Footbarra/MyFooter";
-import Welcome from "./Components/Benvenuto/Welcome";
-import LatestRelease from "./Components/Main/LatestRelease";
-import ThemeContext from "./Components/Contexts/ThemeContext";
-import MyContext from "./Components/Contexts/provaContext";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import Errorpage from "./Pages/Errorpage";
 
 const App = () => {
   return (
-    <ThemeContext>
-      <MyContext>
-        <MyNav links={myLinks} />
-        <Welcome />
-        <LatestRelease />
-      </MyContext>
-      <MyFooter links={myLinksFoot} />
-    </ThemeContext>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+
+        <Route path="*" element={<Errorpage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

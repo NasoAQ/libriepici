@@ -1,13 +1,14 @@
 import React from "react";
 import MyNav from "../Components/Navbarra/MyNav";
 import MyFooter from "../Components/Footbarra/MyFooter";
+import { myLinks, myLinksFoot } from "../data/navlinks";
 
 const MainLayout = ({ children }) => {
   return (
     <>
-      <MyNav />
+      <MyNav links={myLinks} />
       {children}
-      <MyFooter />
+      <MyFooter links={myLinksFoot} />
     </>
   );
 };
