@@ -28,7 +28,7 @@ const MyNav = ({ links }) => {
   return (
     <Navbar expand="lg" className={navbarClasses} data-bs-theme={dataBsTheme}>
       <Container>
-        <Navbar.Brand href="#home">LibriEpici</Navbar.Brand>
+        <Navbar.Brand href="/">LibriEpici</Navbar.Brand>
         <Col className="col-6">
           <input
             type="text"
