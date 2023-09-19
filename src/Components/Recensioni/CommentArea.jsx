@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 import SingleComment from "./SingleComment";
 import IsLoading from "../Spinner/isLoading";
+import { ThemeProvider } from "../Contexts/ThemeContext";
 
 const CommentArea = ({ asin }) => {
 	const [reviews, setReviews] = useState([]);
@@ -11,6 +12,10 @@ const CommentArea = ({ asin }) => {
 	const [comments, setComments] = useState([]);
 	const [newComment, setNewComment] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
+	const [error, setError] = useState(null);
+	const { theme } = useContext(ThemeProvider);
+
+	const commentTheme = theme === "dark" ? "text-white" : "";
 
 	const fetchReviews = async () => {
 		setIsLoading(true);
@@ -48,7 +53,7 @@ const CommentArea = ({ asin }) => {
 			setComments([...comments, newComment]);
 			setNewComment(newComment);
 		} catch (error) {
-			console.log(error, "Errore nell'inserimento");
+			setError(error, "Errore nell'inserimento");
 		}
 	};
 
@@ -116,27 +121,33 @@ const CommentArea = ({ asin }) => {
 			<IsLoading isLoading={isLoading} />
 			{filteredReviews.length === 0 && randomReview && (
 				<>
-					<h5 className="text-danger">Random reviews</h5>
+					<h5 className="text-danger mt-3">Random reviews</h5>
 					<SingleComment
 						comment={randomReview}
 						onDeleteComment={handleDeleteComment}
 						onEditComment={handleEditComment}
+						commentTheme={`${commentTheme}`}
 					/>
 				</>
 			)}
 			{filteredReviews.length > 0 && (
-				<h5 className="text-success">Real reviews</h5>
+				<>
+					<h5 className="text-success mt-3">Real reviews</h5>
+
+					<CommentList
+						comments={filteredReviews}
+						onDeleteComment={handleDeleteComment}
+						onEditComment={handleEditComment}
+						commentTheme={`${commentTheme}`}
+					/>
+				</>
 			)}
-			<CommentList
-				comments={filteredReviews}
-				onDeleteComment={handleDeleteComment}
-				onEditComment={handleEditComment}
-			/>
 			<AddComment
 				selectedBookId={selectedBookId}
 				onAddComment={handleAddComment}
 				setReviews={setReviews}
 				reviews={reviews}
+				commentTheme={`${commentTheme}`}
 			/>
 		</>
 	);

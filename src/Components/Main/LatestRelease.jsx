@@ -35,7 +35,7 @@ const LatestRelease = () => {
 						))}
 					</Col>
 					<Col xs lg="3">
-						{selectedBook && <CommentArea asin={selectedBook} />}
+						<CommentArea asin={selectedBook} />
 					</Col>
 				</Row>
 			)}

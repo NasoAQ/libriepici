@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-const SingleComment = ({ comment, onDeleteComment, onEditComment }) => {
+const SingleComment = ({
+	comment,
+	onDeleteComment,
+	onEditComment,
+	commentTheme,
+}) => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [modalOpen2, setModalOpen2] = useState(false);
 	const [editedComment, setEditedComment] = useState({ ...comment });
@@ -37,16 +42,16 @@ const SingleComment = ({ comment, onDeleteComment, onEditComment }) => {
 
 	return (
 		<div>
-			<p>
+			<p className={`${commentTheme}`}>
 				<strong>Author:</strong> {comment.author}
 			</p>
-			<p>
+			<p className={`${commentTheme}`}>
 				<strong>Comment:</strong> {comment.comment}
 			</p>
-			<p>
+			<p className={`${commentTheme}`}>
 				<strong>Rate:</strong> {comment.rate}
 			</p>
-			<p>
+			<p className={`${commentTheme}`}>
 				<span>Updated at:</span> {updatedDateStr}
 			</p>
 			<div className="d-flex justify-content-evenly">
