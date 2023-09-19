@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { Trash, PencilSquare } from "react-bootstrap-icons";
 
 const SingleComment = ({
 	comment,
@@ -56,10 +57,10 @@ const SingleComment = ({
 			</p>
 			<div className="d-flex justify-content-evenly">
 				<button onClick={handleDeleteClick} className="btn btn-danger btn-sm">
-					Cancella
+					<Trash />
 				</button>
 				<button onClick={handleEditClick} className="btn btn-success btn-sm">
-					Modifica
+					<PencilSquare />
 				</button>
 			</div>
 			<hr />

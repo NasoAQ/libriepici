@@ -1,6 +1,7 @@
 import { React, useParams } from "react";
 import { Container, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { HouseFill } from "react-bootstrap-icons";
 
 const MyDetails = ({ book }) => {
 	return (
@@ -25,7 +26,9 @@ const MyDetails = ({ book }) => {
 				</Card.Body>
 			</Card>
 			<Button className="btn-warning mb-3">
-				<Link to="/">HOME</Link>
+				<Link to="/">
+					<HouseFill size={50} />
+				</Link>
 			</Button>
 		</Container>
 	);

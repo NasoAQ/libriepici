@@ -5,6 +5,7 @@ import CommentArea from "../Recensioni/CommentArea";
 import { ThemeProvider } from "../Contexts/ThemeContext";
 import { Button, Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Eye } from "react-bootstrap-icons";
 
 const MyCard = ({ book, onImgClick, isSelected }) => {
 	const { theme } = useContext(ThemeProvider);
@@ -33,11 +34,13 @@ const MyCard = ({ book, onImgClick, isSelected }) => {
 				/>
 				<Card.Body className={cardBgClasses}>
 					<Card.Subtitle>{book.title}</Card.Subtitle>
-					<Card.Text>
+					<Card.Text className="d-flex justify-content-center">
 						<strong>Price:</strong>
 						<span className="text-primary"> € {book.price}</span>
-						<Button className="btn-warning btn-sm mx-2">
-							<Link to={`/book/${book.asin}`}>Details</Link>
+						<Button className="btn-warning btn-sm m-2">
+							<Link to={`/book/${book.asin}`}>
+								<Eye size={20} />
+							</Link>
 						</Button>
 					</Card.Text>
 					{/* {isSelected && <CommentArea asin={book.asin} />} */}

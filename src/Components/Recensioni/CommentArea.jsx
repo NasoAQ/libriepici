@@ -119,7 +119,7 @@ const CommentArea = ({ asin }) => {
 	return (
 		<>
 			<IsLoading isLoading={isLoading} />
-			{filteredReviews.length === 0 && randomReview && (
+			{filteredReviews.length === 0 && randomReview && selectedBookId && (
 				<>
 					<h5 className="text-danger mt-3">Random reviews</h5>
 					<SingleComment

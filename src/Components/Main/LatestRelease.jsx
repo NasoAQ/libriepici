@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import MyCard from "./myCard";
 import { nanoid } from "nanoid";
@@ -14,9 +14,17 @@ const LatestRelease = () => {
 
 	const containerClasses = `${theme === "dark" ? "bg-dark" : ""}`;
 
+	const commentAreaRef = useRef(null);
+
 	const handleClickImg = bookId => {
 		setSelectedBook(bookId);
+
+		commentAreaRef.current.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
 	};
+
 	return (
 		<Container className={containerClasses}>
 			{libriFiltrati.length === 0 ? (
@@ -34,7 +42,7 @@ const LatestRelease = () => {
 							/>
 						))}
 					</Col>
-					<Col xs lg="3">
+					<Col xs lg="3" ref={commentAreaRef}>
 						<CommentArea asin={selectedBook} />
 					</Col>
 				</Row>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { PlusSquare } from "react-bootstrap-icons";
 
 const AddComment = ({
 	onAddComment,
@@ -6,11 +7,13 @@ const AddComment = ({
 	setReviews,
 	reviews,
 	commentTheme,
+	title,
 }) => {
 	const [text, setText] = useState("");
 	const [rating, setRating] = useState(1);
 	const [author, setAuthor] = useState("");
 	const [comments, setComments] = useState([]);
+	const [error, setError] = useState(null);
 
 	const handleTextChange = e => {
 		setText(e.target.value);
@@ -46,13 +49,12 @@ const AddComment = ({
 		);
 
 		if (!response.ok) {
-			throw new Error("Errore nell'invio recensione");
+			alert("Errore nell'invio recensione");
+		} else {
+			// Aggiungi il nuovo commento solo se la risposta è OK
+			setComments([...comments, newComment]);
+			setReviews([...reviews, newComment]);
 		}
-
-		// onAddComment(newComment);
-		setComments([...comments, newComment]);
-
-		setReviews([...reviews, newComment]);
 
 		setAuthor("");
 		setText("");
@@ -106,7 +108,7 @@ const AddComment = ({
 						className="btn btn-primary"
 						onClick={handleSubmit}
 					>
-						Submit
+						<PlusSquare />
 					</button>
 				</div>
 			</form>
