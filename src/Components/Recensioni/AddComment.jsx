@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Badge } from "react-bootstrap";
 import { PlusSquare } from "react-bootstrap-icons";
-
+import "../Recensioni/badge.css";
 const AddComment = ({
 	onAddComment,
 	selectedBookId,
@@ -109,6 +110,7 @@ const AddComment = ({
 						onClick={handleSubmit}
 					>
 						<PlusSquare />
+						<Badge className="add-badge">Add</Badge>
 					</button>
 				</div>
 			</form>

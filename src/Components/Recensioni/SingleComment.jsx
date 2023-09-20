@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Badge } from "react-bootstrap";
 import { Trash, PencilSquare } from "react-bootstrap-icons";
 
 const SingleComment = ({
@@ -58,9 +58,15 @@ const SingleComment = ({
 			<div className="d-flex justify-content-evenly">
 				<button onClick={handleDeleteClick} className="btn btn-danger btn-sm">
 					<Trash />
+					<Badge bg="danger" className="add-badge">
+						Delete
+					</Badge>
 				</button>
 				<button onClick={handleEditClick} className="btn btn-success btn-sm">
 					<PencilSquare />
+					<Badge bg="success" className="add-badge">
+						Edit
+					</Badge>
 				</button>
 			</div>
 			<hr />

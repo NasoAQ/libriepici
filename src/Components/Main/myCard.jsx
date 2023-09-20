@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import "../Main/border.css";
 import CommentArea from "../Recensioni/CommentArea";
 import { ThemeProvider } from "../Contexts/ThemeContext";
-import { Button, Card, Col } from "react-bootstrap";
+import { Button, Card, Col, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Eye } from "react-bootstrap-icons";
 
@@ -40,6 +40,9 @@ const MyCard = ({ book, onImgClick, isSelected }) => {
 						<Button className="btn-warning btn-sm m-2">
 							<Link to={`/book/${book.asin}`}>
 								<Eye size={20} />
+								<Badge bg="warning" className="add-badge text-primary">
+									Details
+								</Badge>
 							</Link>
 						</Button>
 					</Card.Text>
