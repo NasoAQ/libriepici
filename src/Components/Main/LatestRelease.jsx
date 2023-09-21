@@ -38,12 +38,12 @@ const LatestRelease = () => {
 								book={book}
 								isSelected={book.asin === selectedBook}
 								onImgClick={handleClickImg}
-								asin={book.asin}
+								selectedBookId={book.asin}
 							/>
 						))}
 					</Col>
 					<Col xs lg="3" ref={commentAreaRef}>
-						<CommentArea asin={selectedBook} />
+						<CommentArea selectedBookId={selectedBook} />
 					</Col>
 				</Row>
 			)}

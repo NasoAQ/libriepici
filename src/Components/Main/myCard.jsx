@@ -1,13 +1,12 @@
 import React, { useContext, useState } from "react";
 import { nanoid } from "nanoid";
 import "../Main/border.css";
-import CommentArea from "../Recensioni/CommentArea";
 import { ThemeProvider } from "../Contexts/ThemeContext";
 import { Button, Card, Col, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Eye } from "react-bootstrap-icons";
 
-const MyCard = ({ book, onImgClick, isSelected }) => {
+const MyCard = ({ book, onImgClick, isSelected, selectedBookId }) => {
 	const { theme } = useContext(ThemeProvider);
 
 	const bordoRosso = isSelected && "selected";
@@ -19,7 +18,7 @@ const MyCard = ({ book, onImgClick, isSelected }) => {
 		if (isSelected) {
 			onImgClick(null);
 		} else {
-			onImgClick(book.asin);
+			onImgClick(selectedBookId);
 		}
 	};
 
@@ -38,15 +37,14 @@ const MyCard = ({ book, onImgClick, isSelected }) => {
 						<strong>Price:</strong>
 						<span className="text-primary"> € {book.price}</span>
 						<Button className="btn-warning btn-sm m-2">
-							<Link to={`/book/${book.asin}`}>
+							<Link to={`/book/${selectedBookId}`}>
 								<Eye size={20} />
-								<Badge bg="warning" className="add-badge text-primary">
+								<Badge bg="warning" className="badge text-primary">
 									Details
 								</Badge>
 							</Link>
 						</Button>
 					</Card.Text>
-					{/* {isSelected && <CommentArea asin={book.asin} />} */}
 				</Card.Body>
 			</Card>
 		</Col>

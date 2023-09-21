@@ -1,8 +1,8 @@
-.add-badge {
+.badge {
 	display: none;
 	margin-left: 5px;
 }
 
-.btn:hover .add-badge {
+.btn:hover .badge {
 	display: inline-block;
 }

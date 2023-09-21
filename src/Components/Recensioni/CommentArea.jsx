@@ -5,10 +5,10 @@ import SingleComment from "./SingleComment";
 import IsLoading from "../Spinner/isLoading";
 import { ThemeProvider } from "../Contexts/ThemeContext";
 
-const CommentArea = ({ asin }) => {
+const CommentArea = ({ selectedBookId }) => {
 	const [reviews, setReviews] = useState([]);
 	const [randomReview, setRandomReview] = useState(null);
-	const [selectedBookId, setSelectedBookId] = useState(null);
+	//const [selectedBookId, setSelectedBookId] = useState(null);
 	const [comments, setComments] = useState([]);
 	const [newComment, setNewComment] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
@@ -110,11 +110,13 @@ const CommentArea = ({ asin }) => {
 
 	useEffect(() => {
 		fetchReviews();
-		setSelectedBookId(asin);
+		//setSelectedBookId(selectedBookId);
 		//setIsLoading(false);
-	}, [asin]);
+	}, [selectedBookId]);
 
-	const filteredReviews = reviews.filter(item => item.elementId === asin);
+	const filteredReviews = reviews.filter(
+		item => item.elementId === selectedBookId
+	);
 
 	return (
 		<>

@@ -58,13 +58,13 @@ const SingleComment = ({
 			<div className="d-flex justify-content-evenly">
 				<button onClick={handleDeleteClick} className="btn btn-danger btn-sm">
 					<Trash />
-					<Badge bg="danger" className="add-badge">
+					<Badge bg="danger" className="badge">
 						Delete
 					</Badge>
 				</button>
 				<button onClick={handleEditClick} className="btn btn-success btn-sm">
 					<PencilSquare />
-					<Badge bg="success" className="add-badge">
+					<Badge bg="success" className="badge">
 						Edit
 					</Badge>
 				</button>

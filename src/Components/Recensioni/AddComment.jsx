@@ -110,7 +110,7 @@ const AddComment = ({
 						onClick={handleSubmit}
 					>
 						<PlusSquare />
-						<Badge className="add-badge">Add</Badge>
+						<Badge className="badge">Add</Badge>
 					</button>
 				</div>
 			</form>
