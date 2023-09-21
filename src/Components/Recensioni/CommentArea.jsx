@@ -15,6 +15,9 @@ const CommentArea = ({ selectedBookId }) => {
 	const [error, setError] = useState(null);
 	const { theme } = useContext(ThemeProvider);
 
+	const myToken =
+		"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBjNzgyZTNiZmI5ZDAwMTRkYTgzMjciLCJpYXQiOjE2OTUzMTYwMTUsImV4cCI6MTY5NjUyNTYxNX0.m5ekzogtUh0P4f8VZg55jmDRB5FjC2NseJGYpUuQqF8";
+
 	const commentTheme = theme === "dark" ? "text-white" : "";
 
 	const fetchReviews = async () => {
@@ -24,8 +27,7 @@ const CommentArea = ({ selectedBookId }) => {
 				`https://striveschool-api.herokuapp.com/api/comments/`,
 				{
 					headers: {
-						Authorization:
-							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY5ODYyNTJkMDVjNTAwMTRkOTU1YTkiLCJpYXQiOjE2OTQwNzQ0MDUsImV4cCI6MTY5NTI4NDAwNX0.O_9ZbZOzkhCGd7xzsqUUd3qYkuW-BOjkD-g9buXAgTw",
+						Authorization: myToken,
 					},
 				}
 			);
@@ -42,6 +44,7 @@ const CommentArea = ({ selectedBookId }) => {
 
 			setRandomReview(randomSelectedReview);
 		} catch (error) {
+			setError(error);
 			console.log(error, "Errore nelle props");
 		} finally {
 			setIsLoading(false);
@@ -65,8 +68,7 @@ const CommentArea = ({ selectedBookId }) => {
 					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",
-						Authorization:
-							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY5ODYyNTJkMDVjNTAwMTRkOTU1YTkiLCJpYXQiOjE2OTQwNzQ0MDUsImV4cCI6MTY5NTI4NDAwNX0.O_9ZbZOzkhCGd7xzsqUUd3qYkuW-BOjkD-g9buXAgTw",
+						Authorization: myToken,
 					},
 					body: JSON.stringify(editedComment),
 				}
@@ -80,7 +82,9 @@ const CommentArea = ({ selectedBookId }) => {
 			);
 			setReviews(updatedReviews);
 			fetchReviews();
-		} catch (error) {}
+		} catch (error) {
+			setError(error);
+		}
 	};
 
 	const handleDeleteComment = async commentId => {
@@ -90,8 +94,7 @@ const CommentArea = ({ selectedBookId }) => {
 				{
 					method: "DELETE",
 					headers: {
-						Authorization:
-							"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY5ODYyNTJkMDVjNTAwMTRkOTU1YTkiLCJpYXQiOjE2OTQwNzQ0MDUsImV4cCI6MTY5NTI4NDAwNX0.O_9ZbZOzkhCGd7xzsqUUd3qYkuW-BOjkD-g9buXAgTw",
+						Authorization: myToken,
 					},
 				}
 			);
@@ -104,6 +107,7 @@ const CommentArea = ({ selectedBookId }) => {
 			setComments(updatedComments);
 			fetchReviews();
 		} catch (error) {
+			setError(error);
 			console.log(error, "Errore nella cancellazione");
 		}
 	};

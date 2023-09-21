@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Badge } from "react-bootstrap";
 import { PlusSquare } from "react-bootstrap-icons";
 import "../Recensioni/badge.css";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import { Tooltip } from "react-bootstrap";
+
 const AddComment = ({
 	onAddComment,
 	selectedBookId,
@@ -15,6 +18,15 @@ const AddComment = ({
 	const [author, setAuthor] = useState("");
 	const [comments, setComments] = useState([]);
 	const [error, setError] = useState(null);
+
+	const myToken =
+		"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBjNzgyZTNiZmI5ZDAwMTRkYTgzMjciLCJpYXQiOjE2OTUzMTYwMTUsImV4cCI6MTY5NjUyNTYxNX0.m5ekzogtUh0P4f8VZg55jmDRB5FjC2NseJGYpUuQqF8";
+
+	const renderTooltip = props => (
+		<Tooltip id="button-tooltip" {...props}>
+			Add
+		</Tooltip>
+	);
 
 	const handleTextChange = e => {
 		setText(e.target.value);
@@ -42,8 +54,7 @@ const AddComment = ({
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					Authorization:
-						"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY5ODYyNTJkMDVjNTAwMTRkOTU1YTkiLCJpYXQiOjE2OTQwNzQ0MDUsImV4cCI6MTY5NTI4NDAwNX0.O_9ZbZOzkhCGd7xzsqUUd3qYkuW-BOjkD-g9buXAgTw",
+					Authorization: myToken,
 				},
 				body: JSON.stringify(newComment),
 			}
@@ -104,14 +115,20 @@ const AddComment = ({
 					/>
 				</div>
 				<div className="d-flex justify-content-center">
-					<button
-						type="button"
-						className="btn btn-primary"
-						onClick={handleSubmit}
+					<OverlayTrigger
+						placement="bottom"
+						delay={{ show: 250, hide: 250 }}
+						overlay={renderTooltip}
 					>
-						<PlusSquare />
-						<Badge className="badge">Add</Badge>
-					</button>
+						<button
+							type="button"
+							className="btn btn-primary"
+							onClick={handleSubmit}
+						>
+							<PlusSquare />
+							{/* <Badge className="badge">Add</Badge> */}
+						</button>
+					</OverlayTrigger>
 				</div>
 			</form>
 		</div>

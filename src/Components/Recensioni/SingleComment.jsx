@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Button, Badge } from "react-bootstrap";
 import { Trash, PencilSquare } from "react-bootstrap-icons";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 const SingleComment = ({
 	comment,
@@ -41,6 +43,17 @@ const SingleComment = ({
 	const updatedDate = new Date(comment.updatedAt);
 	const updatedDateStr = updatedDate.toLocaleString();
 
+	const renderTooltipDelete = props => (
+		<Tooltip id="button-tooltip" {...props}>
+			Delete
+		</Tooltip>
+	);
+	const renderTooltipEdit = props => (
+		<Tooltip id="button-tooltip" {...props}>
+			Edit
+		</Tooltip>
+	);
+
 	return (
 		<div>
 			<p className={`${commentTheme}`}>
@@ -56,18 +69,30 @@ const SingleComment = ({
 				<span>Updated at:</span> {updatedDateStr}
 			</p>
 			<div className="d-flex justify-content-evenly">
-				<button onClick={handleDeleteClick} className="btn btn-danger btn-sm">
-					<Trash />
-					<Badge bg="danger" className="badge">
-						Delete
-					</Badge>
-				</button>
-				<button onClick={handleEditClick} className="btn btn-success btn-sm">
-					<PencilSquare />
-					<Badge bg="success" className="badge">
-						Edit
-					</Badge>
-				</button>
+				<OverlayTrigger
+					placement="left"
+					delay={{ show: 250, hide: 250 }}
+					overlay={renderTooltipDelete}
+				>
+					<button onClick={handleDeleteClick} className="btn btn-danger btn-sm">
+						<Trash />
+						{/* <Badge bg="danger" className="badge">
+							Delete
+						</Badge> */}
+					</button>
+				</OverlayTrigger>
+				<OverlayTrigger
+					placement="right"
+					delay={{ show: 250, hide: 250 }}
+					overlay={renderTooltipEdit}
+				>
+					<button onClick={handleEditClick} className="btn btn-success btn-sm">
+						<PencilSquare />
+						{/* <Badge bg="success" className="badge">
+							Edit
+						</Badge> */}
+					</button>
+				</OverlayTrigger>
 			</div>
 			<hr />
 

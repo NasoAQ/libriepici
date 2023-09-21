@@ -6,6 +6,11 @@ import { HouseFill } from "react-bootstrap-icons";
 const MyDetails = ({ book }) => {
 	return (
 		<Container className="d-flex justify-content-center flex-column align-items-center h-100">
+			<Button className="btn-warning mt-3 my-1">
+				<Link to="/">
+					<HouseFill size={50} />
+				</Link>
+			</Button>
 			<Card className={`col-3 m-3`}>
 				<Card.Img variant="top" src={book.img} className={`rounded-start`} />
 				<Card.Body>
@@ -25,11 +30,6 @@ const MyDetails = ({ book }) => {
 					</Card.Text>
 				</Card.Body>
 			</Card>
-			<Button className="btn-warning mb-3">
-				<Link to="/">
-					<HouseFill size={50} />
-				</Link>
-			</Button>
 		</Container>
 	);
 };
