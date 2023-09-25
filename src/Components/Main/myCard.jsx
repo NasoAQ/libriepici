@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import { React, useContext } from "react";
 import { nanoid } from "nanoid";
-import "../Main/border.css";
 import { ThemeProvider } from "../Contexts/ThemeContext";
-import { Button, Card, Col, Badge } from "react-bootstrap";
+import { Button, Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Eye } from "react-bootstrap-icons";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import "../Main/border.css";
 
 const MyCard = ({ book, onImgClick, isSelected, selectedBookId }) => {
 	const { theme } = useContext(ThemeProvider);
@@ -52,9 +52,6 @@ const MyCard = ({ book, onImgClick, isSelected, selectedBookId }) => {
 							<Button className="btn-warning btn-sm m-2">
 								<Link to={`/book/${selectedBookId}`}>
 									<Eye size={20} />
-									{/* <Badge bg="warning" className="badge text-primary">
-										Details
-									</Badge> */}
 								</Link>
 							</Button>
 						</OverlayTrigger>

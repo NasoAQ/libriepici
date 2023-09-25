@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+/* eslint-disable no-unused-vars */
+import { React, useState, useEffect, useContext } from "react";
+import { ThemeProvider } from "../Contexts/ThemeContext";
 import CommentList from "./CommentList";
 import AddComment from "./AddComment";
 import SingleComment from "./SingleComment";
 import IsLoading from "../Spinner/isLoading";
-import { ThemeProvider } from "../Contexts/ThemeContext";
 
 const CommentArea = ({ selectedBookId }) => {
 	const [reviews, setReviews] = useState([]);

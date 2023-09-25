@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { Badge } from "react-bootstrap";
+import { React, useState } from "react";
 import { PlusSquare } from "react-bootstrap-icons";
-import "../Recensioni/badge.css";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { Tooltip } from "react-bootstrap";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import "../Recensioni/badge.css";
 
 const AddComment = ({
 	onAddComment,
@@ -61,7 +60,7 @@ const AddComment = ({
 		);
 
 		if (!response.ok) {
-			alert("Errore nell'invio recensione");
+			setError(error, "Errore nell'invio recensione");
 		} else {
 			// Aggiungi il nuovo commento solo se la risposta è OK
 			setComments([...comments, newComment]);
@@ -126,7 +125,6 @@ const AddComment = ({
 							onClick={handleSubmit}
 						>
 							<PlusSquare />
-							{/* <Badge className="badge">Add</Badge> */}
 						</button>
 					</OverlayTrigger>
 				</div>

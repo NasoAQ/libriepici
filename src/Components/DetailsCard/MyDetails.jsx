@@ -1,4 +1,4 @@
-import { React, useParams } from "react";
+import { React } from "react";
 import { Container, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { HouseFill } from "react-bootstrap-icons";

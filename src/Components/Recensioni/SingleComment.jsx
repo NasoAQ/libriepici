@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Modal, Button, Badge } from "react-bootstrap";
+import { React, useState } from "react";
+import { Modal, Button } from "react-bootstrap";
 import { Trash, PencilSquare } from "react-bootstrap-icons";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
